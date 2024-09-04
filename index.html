@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Oferta WhatsApp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <div class="form-group">
+      <label for="titulo">📝 Título da Oferta:</label>
+      <input type="text" id="titulo" placeholder="Insira o título da oferta">
+    </div>
+    
+    <div class="form-group">
+      <label for="valor">💰 Valor da Oferta (R$):</label>
+      <input type="text" id="valor" placeholder="Ex: 33,90">
+    </div>
+
+    <div class="form-group">
+      <label for="emoji">😃 Escolha um Emoji:</label>
+      <select id="emoji">
+        <option value="😲">Surpreso 😲</option>
+        <option value="😍">Apaixonado 😍</option>
+        <option value="😎">Estiloso 😎</option>
+        <option value="🤩">Animado 🤩</option>
+        <option value="🔥">Fogo 🔥</option>
+        <option value="💥">Explosivo 💥</option>
+        <option value="🎉">Celebração 🎉</option>
+        <option value="🤑">Dinheiro 🤑</option>
+        <option value="💸">Desconto 💸</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="link">🔗 Link da Oferta:</label>
+      <input type="text" id="link" placeholder="Insira o link da oferta">
+    </div>
+
+    <button class="btn gerar-btn" onclick="gerarTexto()">✨ Gerar Texto</button>
+
+    <h2>Texto Gerado:</h2>
+    <textarea id="textoGerado" readonly rows="6" placeholder="O texto gerado aparecerá aqui..."></textarea>
+    
+    <button id="copyBtn" class="btn copiar-btn" onclick="copiarTexto()">📋 Copiar Texto</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
