@@ -13,7 +13,7 @@ function gerarTexto() {
 
   *🔥 R$${valor}*
 
-Link do produto:
+🛍️ Link do produto:
 ${link}
   
 🛒 link para o carrinho:
