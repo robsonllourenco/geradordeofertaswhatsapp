@@ -8,12 +8,11 @@
 </head>
 <body>
   <div class="container">
-
     <div class="form-group">
       <label for="titulo">📝 Título da Oferta:</label>
       <input type="text" id="titulo" placeholder="Insira o título da oferta">
     </div>
-    
+
     <div class="form-group">
       <label for="valor">💰 Valor da Oferta (R$):</label>
       <input type="text" id="valor" placeholder="Ex: 33,90">
@@ -44,11 +43,21 @@
       <input type="text" id="cupom" placeholder="Insira o cupom, se houver">
     </div>
 
+    <div class="form-group">
+      <label for="incluirFrase">🔔 Incluir frase "vai acabar a qualquer momento"?</label>
+      <select id="incluirFrase">
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+    </div>
+
+
+
     <button class="btn gerar-btn" onclick="gerarTexto()">✨ Gerar Texto</button>
 
     <h2>Texto Gerado:</h2>
     <textarea id="textoGerado" readonly rows="6" placeholder="O texto gerado aparecerá aqui..."></textarea>
-    
+
     <button id="copyBtn" class="btn copiar-btn" onclick="copiarTexto()">📋 Copiar Texto</button>
   </div>
 
