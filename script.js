@@ -5,6 +5,7 @@ function gerarTexto() {
   const emoji = document.getElementById("emoji").value;
   const link = document.getElementById("link").value;
   const cupom = document.getElementById("cupom").value; // Campo de cupom
+  const incluirFrase = document.getElementById("incluirFrase").value; // Select de incluir frase
 
   // Link do carrinho fixo
   const linkCarrinho = "https://s.shopee.com.br/4fd9IbIqvf";
@@ -14,9 +15,14 @@ function gerarTexto() {
 
 *🔥 R$${valor}*`;
 
+  // Adiciona a frase "vai acabar a qualquer momento" se a opção "sim" for selecionada
+  if (incluirFrase === "sim") {
+      textoGerado += `\n_vai acabar a qualquer momento_`;
+  }
+
   // Adiciona o cupom logo abaixo do valor, se houver um
   if (cupom) {
-    textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
+      textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
   }
 
   textoGerado += `\n\n🛍️ Link do produto:
