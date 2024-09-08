@@ -6,6 +6,7 @@ function gerarTexto() {
   const link = document.getElementById("link").value;
   const cupom = document.getElementById("cupom").value; // Campo de cupom
   const incluirFrase = document.getElementById("incluirFrase").value; // Select de incluir frase
+  const exibirCarrinho = document.getElementById("exibirCarrinho").checked; // Checkbox para exibir link do carrinho
 
   // Link do carrinho fixo
   const linkCarrinho = "https://s.shopee.com.br/7fGt2BZA3U";
@@ -26,10 +27,13 @@ function gerarTexto() {
   }
 
   textoGerado += `\n\n👇 Link do produto p/ comprar:
-${link}
+${link}`;
 
-🛒 link para o carrinho:
+  // Se a checkbox para exibir o link do carrinho estiver marcada, adiciona o link do carrinho
+  if (exibirCarrinho) {
+    textoGerado += `\n\n🛒 link para o carrinho:
 ${linkCarrinho}`;
+  }
 
   // Exibindo o texto gerado no textarea
   document.getElementById("textoGerado").value = textoGerado.trim();
