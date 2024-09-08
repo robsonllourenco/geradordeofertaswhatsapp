@@ -25,7 +25,7 @@ function gerarTexto() {
       textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
   }
 
-  textoGerado += `\n\n🛍️ Link do produto:
+  textoGerado += `\n\n👇 Link do produto p/ comprar:
 ${link}
 
 🛒 link para o carrinho:
