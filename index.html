@@ -31,7 +31,6 @@
         <option value="🤑">Dinheiro 🤑</option>
         <option value="💸">Desconto 💸</option>
         <option value="✨">Estrela ✨</option>
-        
       </select>
     </div>
 
@@ -53,7 +52,10 @@
       </select>
     </div>
 
-
+    <div class="form-group">
+      <label for="exibirCarrinho">🔗 Incluir link do carrinho?</label>
+      <input type="checkbox" id="exibirCarrinho">
+    </div>
 
     <button class="btn gerar-btn" onclick="gerarTexto()">✨ Gerar Texto</button>
 
@@ -61,6 +63,8 @@
     <textarea id="textoGerado" readonly rows="6" placeholder="O texto gerado aparecerá aqui..."></textarea>
 
     <button id="copyBtn" class="btn copiar-btn" onclick="copiarTexto()">📋 Copiar Texto</button>
+
+    <div id="notification" class="notification"></div>
   </div>
 
   <script src="script.js"></script>
