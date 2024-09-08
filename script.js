@@ -8,7 +8,7 @@ function gerarTexto() {
   const incluirFrase = document.getElementById("incluirFrase").value; // Select de incluir frase
 
   // Link do carrinho fixo
-  const linkCarrinho = "https://s.shopee.com.br/4fd9IbIqvf";
+  const linkCarrinho = "https://s.shopee.com.br/7fGt2BZA3U";
 
   // Gerando o texto no formato desejado com negrito para o WhatsApp
   let textoGerado = `*${titulo}* ${emoji}
