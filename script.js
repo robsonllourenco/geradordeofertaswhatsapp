@@ -1,55 +1,100 @@
+let selectedImage = null;
+
 function gerarTexto() {
-  // Pegando os valores dos inputs
   const titulo = document.getElementById("titulo").value;
   const valor = document.getElementById("valor").value;
   const emoji = document.getElementById("emoji").value;
   const link = document.getElementById("link").value;
-  const cupom = document.getElementById("cupom").value; // Campo de cupom
-  const incluirFrase = document.getElementById("incluirFrase").value; // Select de incluir frase
-  const exibirCarrinho = document.getElementById("exibirCarrinho").checked; // Checkbox para exibir link do carrinho
+  const cupom = document.getElementById("cupom").value;
+  const incluirFrase = document.getElementById("incluirFrase").value;
+  const exibirCarrinho = document.getElementById("exibirCarrinho").checked;
 
-  // Link do carrinho fixo
   const linkCarrinho = "https://s.shopee.com.br/7fGt2BZA3U";
+  let textoGerado = `*${titulo}* ${emoji}\n\n*🔥 R$${valor}*`;
 
-  // Gerando o texto no formato desejado com negrito para o WhatsApp
-  let textoGerado = `*${titulo}* ${emoji}
-
-*🔥 R$${valor}*`;
-
-  // Adiciona a frase "vai acabar a qualquer momento" se a opção "sim" for selecionada
   if (incluirFrase === "sim") {
       textoGerado += `\n_vai acabar a qualquer momento_`;
   }
 
-  // Adiciona o cupom logo abaixo do valor, se houver um
   if (cupom) {
       textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
   }
 
-  textoGerado += `\n\n👇 Link do produto p/ comprar:
-${link}`;
+  textoGerado += `\n\n👇 Link do produto p/ comprar:\n${link}`;
 
-  // Se a checkbox para exibir o link do carrinho estiver marcada, adiciona o link do carrinho
   if (exibirCarrinho) {
-    textoGerado += `\n\n🛒 link para o carrinho:
-${linkCarrinho}`;
+    textoGerado += `\n\n🛒 link para o carrinho:\n${linkCarrinho}`;
   }
 
-  // Exibindo o texto gerado no textarea
   document.getElementById("textoGerado").value = textoGerado.trim();
+}
+
+// Função para remover os asteriscos ao enviar a mensagem para o Telegram
+function limparAsteriscos(texto) {
+  return texto.replace(/\*/g, ''); // Remove todos os * do texto
+}
+
+function enviarParaTelegram() {
+  let textoGerado = document.getElementById("textoGerado").value;
+
+  // Remove os * do texto apenas antes de enviar ao Telegram
+  textoGerado = limparAsteriscos(textoGerado);
+
+  const token = '6753980070:AAE0jfL0J7RL5EBXbnC8ooGXo7e6yQvmCKQ';
+  const chatId = '-1002220689320';
+
+  const formData = new FormData();
+  formData.append("chat_id", chatId);
+  formData.append("caption", textoGerado); // Adiciona o texto como legenda da imagem
+
+  if (selectedImage) {
+    formData.append("photo", selectedImage, "image.jpg"); // Garante que o arquivo seja enviado com o nome correto
+    fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        mostrarNotificacao("Mensagem com imagem enviada para o Telegram com sucesso!");
+      } else {
+        console.log(data); // Exibe a resposta para verificar o erro
+        mostrarNotificacao("Erro ao enviar mensagem para o Telegram.");
+      }
+    })
+    .catch(error => {
+      mostrarNotificacao("Erro na solicitação: " + error);
+    });
+  } else {
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ chat_id: chatId, text: textoGerado, parse_mode: 'Markdown' }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        mostrarNotificacao("Mensagem enviada para o Telegram com sucesso!");
+      } else {
+        console.log(data); // Exibe a resposta para verificar o erro
+        mostrarNotificacao("Erro ao enviar mensagem para o Telegram.");
+      }
+    })
+    .catch(error => {
+      mostrarNotificacao("Erro na solicitação: " + error);
+    });
+  }
 }
 
 function copiarTexto() {
   const textoGerado = document.getElementById("textoGerado");
 
-  // Seleciona o texto
   textoGerado.select();
-  textoGerado.setSelectionRange(0, 99999); // Para mobile
+  textoGerado.setSelectionRange(0, 99999);
 
-  // Copia o texto selecionado
   document.execCommand("copy");
-
-  // Exibe a notificação de sucesso
   mostrarNotificacao("Texto copiado com sucesso!");
 }
 
@@ -58,8 +103,28 @@ function mostrarNotificacao(mensagem) {
   notification.textContent = mensagem;
   notification.classList.add("show");
 
-  // Remove a notificação após 3 segundos
   setTimeout(() => {
     notification.classList.remove("show");
   }, 3000);
 }
+
+// Manipulando a colagem de imagem
+document.getElementById("image-preview").addEventListener("paste", function (e) {
+  const items = e.clipboardData.items;
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].type.indexOf("image") !== -1) {
+      const blob = items[i].getAsFile();
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const imgElement = document.createElement("img");
+        imgElement.src = event.target.result;
+        document.getElementById("image-preview").innerHTML = "";
+        document.getElementById("image-preview").appendChild(imgElement);
+        selectedImage = blob; // Define a imagem selecionada
+      };
+
+      reader.readAsDataURL(blob);
+    }
+  }
+});
