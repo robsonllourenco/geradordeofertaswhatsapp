@@ -6,112 +6,159 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  padding: 20px;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1200px; /* Aumentado para caber melhor as colunas */
   width: 100%;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
 }
 
 .form-group {
-  flex: 1 1 45%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+  margin-bottom: 5px;
+  font-weight: 500;
   font-size: 1em;
   color: #333;
 }
 
-input[type="text"], select {
-  width: 100%;
+input[type="text"], select, textarea {
+  width: 100%; /* Garante que os campos ocupem toda a largura disponível */
   padding: 12px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   font-size: 16px;
-  transition: all 0.3s ease;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus, select:focus {
-  border-color: #28a745;
+input[type="text"]:focus, select:focus, textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   outline: none;
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
 }
 
-button.btn {
+button {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button.btn:hover {
+button:hover {
   transform: translateY(-2px);
 }
 
+button:focus {
+  outline: none;
+}
+
 button.gerar-btn {
-  background-color: #28a745;
-  color: #fff;
+  background-color: #4CAF50;
+  color: white;
+  margin-bottom: 15px;
 }
 
 button.gerar-btn:hover {
-  background-color: #218838;
+  background-color: #45a049;
 }
 
-button.copiar-btn {
-  background-color: #007bff;
-  color: #fff;
+button.copiar-btn, button.enviar-btn {
+  background-color: #2196F3;
+  color: white;
+  margin-top: 10px;
 }
 
-button.copiar-btn:hover {
-  background-color: #0056b3;
+button.enviar-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+button.copiar-btn:hover, button.enviar-btn:hover {
+  background-color: #e53935;
 }
 
 textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   font-size: 16px;
-  resize: none;
-  margin-top: 10px;
-  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 15px;
 }
 
 textarea:focus {
-  border-color: #007bff;
+  border-color: #2196F3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.image-preview {
+  width: 100%;
+  height: 200px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaa;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  grid-column: span 2; /* Centraliza a área de imagem usando 2 colunas */
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
 }
 
 .notification {
   visibility: hidden;
   min-width: 250px;
-  background-color: #28a745;
+  background-color: #4CAF50;
   color: white;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 16px;
   position: fixed;
   z-index: 1;
@@ -120,11 +167,56 @@ textarea:focus {
   transform: translateX(-50%);
   font-size: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: visibility 0s, opacity 0.5s ease-in-out;
   opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .notification.show {
   visibility: visible;
   opacity: 1;
+}
+
+/* Layout de 3 colunas */
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.form-container .form-group.full-width {
+  grid-column: span 3; /* Elementos que devem ocupar toda a largura */
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-container button {
+  flex: 1; /* Garante que os botões tenham o mesmo tamanho */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-container {
+    grid-template-columns: 1fr; /* Ajusta para uma coluna em telas menores */
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"], select, textarea, button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  textarea {
+    height: 100px;
+  }
 }
