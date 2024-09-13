@@ -3,58 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Oferta WhatsApp</title>
+  <title>Gerador de Ofertas - Layout Corrigido</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <div class="form-group">
-      <label for="titulo">📝 Título da Oferta:</label>
-      <input type="text" id="titulo" placeholder="Insira o título da oferta">
-    </div>
 
-    <div class="form-group">
-      <label for="valor">💰 Valor da Oferta (R$):</label>
-      <input type="text" id="valor" placeholder="Ex: 33,90">
-    </div>
+    <!-- Formulário com 3 colunas -->
+    <div class="form-container">
+      <div class="form-group">
+        <label for="titulo">📝 Título da Oferta:</label>
+        <input type="text" id="titulo" placeholder="Insira o título da oferta">
+      </div>
 
-    <div class="form-group">
-      <label for="emoji">😃 Escolha um Emoji:</label>
-      <select id="emoji">
-        <option value="😱">Surpreso 😱</option>
-        <option value="😍">Apaixonado 😍</option>
-        <option value="😎">Estiloso 😎</option>
-        <option value="🤩">Animado 🤩</option>
-        <option value="🔥">Fogo 🔥</option>
-        <option value="💥">Explosivo 💥</option>
-        <option value="🎉">Celebração 🎉</option>
-        <option value="🤑">Dinheiro 🤑</option>
-        <option value="💸">Desconto 💸</option>
-        <option value="✨">Estrela ✨</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="valor">💰 Valor da Oferta (R$):</label>
+        <input type="text" id="valor" placeholder="Ex: 33,90">
+      </div>
 
-    <div class="form-group">
-      <label for="link">🔗 Link da Oferta:</label>
-      <input type="text" id="link" placeholder="Insira o link da oferta">
-    </div>
+      <div class="form-group">
+        <label for="emoji">😃 Escolha um Emoji:</label>
+        <select id="emoji">
+          <option value="😱">Surpreso 😱</option>
+          <option value="😍">Apaixonado 😍</option>
+          <option value="😎">Estiloso 😎</option>
+          <option value="🤩">Animado 🤩</option>
+          <option value="🔥">Fogo 🔥</option>
+          <option value="💥">Explosivo 💥</option>
+          <option value="🎉">Celebração 🎉</option>
+          <option value="🤑">Dinheiro 🤑</option>
+          <option value="💸">Desconto 💸</option>
+          <option value="✨">Estrela ✨</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <label for="cupom">🎟️ Cupom de Desconto (Opcional):</label>
-      <input type="text" id="cupom" placeholder="Insira o cupom, se houver">
-    </div>
+      <div class="form-group">
+        <label for="link">🔗 Link da Oferta:</label>
+        <input type="text" id="link" placeholder="Insira o link da oferta">
+      </div>
 
-    <div class="form-group">
-      <label for="incluirFrase">🔔 Incluir frase "vai acabar a qualquer momento"?</label>
-      <select id="incluirFrase">
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="cupom">🎟️ Cupom de Desconto (Opcional):</label>
+        <input type="text" id="cupom" placeholder="Insira o cupom, se houver">
+      </div>
 
-    <div class="form-group">
-      <label for="exibirCarrinho">🔗 Incluir link do carrinho?</label>
-      <input type="checkbox" id="exibirCarrinho">
+      <div class="form-group">
+        <label for="incluirFrase">🔔 Incluir frase "vai acabar a qualquer momento"?</label>
+        <select id="incluirFrase">
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exibirCarrinho">🔗 Incluir link do carrinho?</label>
+        <input type="checkbox" id="exibirCarrinho">
+      </div>
+
+      <div class="form-group full-width">
+        <label for="imagem">🖼️ Adicionar Imagem (copiar e colar):</label>
+        <div id="image-preview" class="image-preview">Cole aqui a imagem...</div>
+      </div>
     </div>
 
     <button class="btn gerar-btn" onclick="gerarTexto()">✨ Gerar Texto</button>
@@ -62,7 +71,10 @@
     <h2>Texto Gerado:</h2>
     <textarea id="textoGerado" readonly rows="6" placeholder="O texto gerado aparecerá aqui..."></textarea>
 
-    <button id="copyBtn" class="btn copiar-btn" onclick="copiarTexto()">📋 Copiar Texto</button>
+    <div class="btn-container">
+      <button id="copyBtn" class="btn copiar-btn" onclick="copiarTexto()">📋 Copiar Texto</button>
+      <button id="sendBtn" class="btn enviar-btn" onclick="enviarParaTelegram()">🚀 Enviar para Telegram</button>
+    </div>
 
     <div id="notification" class="notification"></div>
   </div>
