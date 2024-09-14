@@ -10,7 +10,7 @@ function gerarTexto() {
   const exibirCarrinho = document.getElementById("exibirCarrinho").checked;
 
   const linkCarrinho = "https://s.shopee.com.br/7fGt2BZA3U";
-  let textoGerado = `*${titulo}* ${emoji}\n\n*🔥 R$${valor}*`;
+  let textoGerado = `${emoji} *${titulo}*\n\n*🔥 R$${valor}*`;
 
   if (incluirFrase === "sim") {
       textoGerado += `\n_vai acabar a qualquer momento_`;
