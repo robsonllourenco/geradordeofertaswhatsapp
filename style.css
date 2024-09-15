@@ -175,7 +175,28 @@
     visibility: visible;
     opacity: 1;
   }
-  
+
+/* Estilo para a caixa de seleção (checkbox) */
+input[type="checkbox"] {
+  width: 20px;  /* Aumenta o tamanho da checkbox */
+  height: 20px;
+  cursor: pointer; /* Adiciona o cursor de pointer */
+  border-radius: 5px; /* Deixa a borda mais suave */
+  border: 2px solid #4CAF50; /* Adiciona uma borda verde */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Suaviza as transições */
+}
+
+input[type="checkbox"]:checked {
+  background-color: #4CAF50; /* Cor de fundo ao marcar */
+  border-color: #4CAF50; /* Cor da borda ao marcar */
+  color: white; /* Texto branco ao marcar */
+}
+
+input[type="checkbox"]:hover {
+  border-color: #45a049; /* Borda muda de cor ao passar o mouse */
+}
+
+
   /* Layout de 3 colunas */
   .form-container {
     display: grid;
