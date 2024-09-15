@@ -9,18 +9,30 @@ function gerarTexto() {
   const incluirFrase = document.getElementById("incluirFrase").value;
   const exibirCarrinho = document.getElementById("exibirCarrinho").checked;
 
-  const linkCarrinho = "https://s.shopee.com.br/7fGt2BZA3U";
+  const linkCarrinho = "https://s.shopee.com.br/1LN0ZvoeY4";
+  let marcaOferta = "";
+
+  // Adiciona a marcação com formatação estética logo acima do link
+  if (link.includes("https://s.shopee.com.br")) {
+    marcaOferta = `🟧 *Oferta da Shopee*`;
+  } else if (link.includes("https://amzn.to")) {
+    marcaOferta = `🟦 *Oferta da Amazon*`;
+  } else if (link.includes("mercadolivre.com.br")) {
+    marcaOferta = `🟨 *Oferta do Mercado Livre*`;
+  }
+
   let textoGerado = `${emoji} *${titulo}*\n\n*🔥 R$${valor}*`;
 
   if (incluirFrase === "sim") {
-      textoGerado += `\n_vai acabar a qualquer momento_`;
+    textoGerado += `\n_vai acabar a qualquer momento_`;
   }
 
   if (cupom) {
-      textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
+    textoGerado += `\n\n🎟️ Use o cupom: ${cupom}`;
   }
 
-  textoGerado += `\n\n👇 Link do produto p/ comprar:\n${link}`;
+  // Adiciona a marcação de oferta antes do link do produto
+  textoGerado += `\n\n${marcaOferta}\n\n👇 Link do produto p/ comprar:\n${link}`;
 
   if (exibirCarrinho) {
     textoGerado += `\n\n🛒 link para o carrinho:\n${linkCarrinho}`;
