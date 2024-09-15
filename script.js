@@ -6,8 +6,8 @@ function gerarTexto() {
   const emoji = document.getElementById("emoji").value;
   const link = document.getElementById("link").value;
   const cupom = document.getElementById("cupom").value;
-  const incluirFrase = document.getElementById("incluirFrase").value;
-  const exibirCarrinho = document.getElementById("exibirCarrinho").checked;
+  const incluirFrase = document.getElementById("incluirFrase").checked; // Verifica se a checkbox está marcada
+  const exibirCarrinho = document.getElementById("exibirCarrinho").checked; // Verifica se a checkbox está marcada
 
   const linkCarrinho = "https://s.shopee.com.br/1LN0ZvoeY4";
   let marcaOferta = "";
@@ -23,7 +23,8 @@ function gerarTexto() {
 
   let textoGerado = `${emoji} *${titulo}*\n\n*🔥 R$${valor}*`;
 
-  if (incluirFrase === "sim") {
+  // Adiciona a frase "vai acabar a qualquer momento" se a checkbox estiver marcada
+  if (incluirFrase) {
     textoGerado += `\n_vai acabar a qualquer momento_`;
   }
 
@@ -34,6 +35,7 @@ function gerarTexto() {
   // Adiciona a marcação de oferta antes do link do produto
   textoGerado += `\n\n${marcaOferta}\n\n👇 Link do produto p/ comprar:\n${link}`;
 
+  // Adiciona o link do carrinho se a checkbox estiver marcada
   if (exibirCarrinho) {
     textoGerado += `\n\n🛒 link para o carrinho:\n${linkCarrinho}`;
   }
