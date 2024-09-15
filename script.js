@@ -14,11 +14,11 @@ function gerarTexto() {
 
   // Adiciona a marcação com formatação estética logo acima do link
   if (link.includes("https://s.shopee.com.br")) {
-    marcaOferta = `🟧 *Oferta da Shopee*`;
+    marcaOferta = `🧡 *Oferta da Shopee*`;
   } else if (link.includes("https://amzn.to")) {
-    marcaOferta = `🟦 *Oferta da Amazon*`;
+    marcaOferta = `💙 *Oferta da Amazon*`;
   } else if (link.includes("mercadolivre.com.br")) {
-    marcaOferta = `🟨 *Oferta do Mercado Livre*`;
+    marcaOferta = `💛 *Oferta do Mercado Livre*`;
   }
 
   let textoGerado = `${emoji} *${titulo}*\n\n*🔥 R$${valor}*`;
